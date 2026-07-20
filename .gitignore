@@ -1,0 +1,4 @@
+# The bundled framework payload and the built archive are large binaries.
+# They ship as GitHub Release assets, not in the repo.
+release/Among-Us-Access/files/
+release/Among-Us-Access.zip

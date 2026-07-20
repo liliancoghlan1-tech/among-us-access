@@ -1,0 +1,56 @@
+====================================================================
+ AMONG US ACCESS  -  NVDA accessibility mod for Among Us
+ How to install  (the short version)
+====================================================================
+
+Everything you need is already in this folder - the mod AND the
+framework it runs on. You do NOT download anything else.
+
+
+--------------------------------------------------------------------
+ TO INSTALL
+--------------------------------------------------------------------
+
+  1. Make sure Among Us is CLOSED.
+
+  2. Run "Install" (the file called Install.bat in this folder).
+     A black window opens and does the work for you: it finds your
+     Among Us folder automatically and copies the mod in.
+
+     - If it cannot find the game, it will ask you to paste the
+       folder path. In Steam: right click Among Us > Manage >
+       Browse local files, and copy the path from the address bar.
+
+     - When it says "DONE!", close the window.
+
+  3. Start NVDA (or your screen reader).
+
+  4. Launch Among Us from Steam. A few seconds after it opens you
+     should hear:  "Among Us Accessibility Mod loaded"
+
+That's it. If you hear that line, you're ready to play.
+
+  * The FIRST launch may take a few extra seconds while the framework
+    warms up. Every launch after that is quick.
+
+
+--------------------------------------------------------------------
+ TO REMOVE IT LATER
+--------------------------------------------------------------------
+
+Run "Uninstall" (Uninstall.bat) in this folder. It puts the game
+back exactly as it was - nothing about Among Us itself is ever
+changed.
+
+
+--------------------------------------------------------------------
+ WANT THE FULL GUIDE?
+--------------------------------------------------------------------
+
+Open "README.txt" in this folder. It explains every feature, every
+key, and how to play each task by ear. It's long, but there's a quick
+key reference near the bottom, and you can press H in a round any time
+to hear your status.
+
+Have fun, and good luck finding the impostor (or being one).
+====================================================================
