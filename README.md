@@ -29,6 +29,7 @@ To remove it later, run **`Uninstall.bat`** from the same folder. It puts the ga
 
 - **Play every Skeld task by ear** — wiring, shields, asteroids, garbage, O2, reactor, swipe card, calibrate distributor, and the rest, each with its own sound design.
 - **Get around the ship** — scan your surroundings, point to the nearest task, find bodies, and hear the room you're in.
+- **Turn-by-turn directions** — pick a task or any room and get walked there one leg at a time ("Down, 7 meters" … "Now right, 4 meters"), following the corridors instead of pointing straight through walls. It reroutes on its own if you wander off or a door is sabotaged shut.
 - **Full status on one key** — colour, role, room, task progress, players alive, and cooldowns.
 - **Meetings & voting** — who called the meeting and whose body, player names read aloud, and each vote announced as it's cast.
 - **Sabotages** — announced with where to fix them, deadly ones with a live countdown, and every fix playable by ear.
@@ -50,6 +51,8 @@ To remove it later, run **`Uninstall.bat`** from the same folder. It puts the ga
 | U | Point to the nearest dead body |
 | P | Living players in your current room |
 | Y | Locate nearest task (crew) / sabotage (impostor) |
+| X / Z | Choose a destination to be walked to (tasks, then rooms) |
+| I | Start walking there — turn-by-turn directions |
 | C | Jump to the chat input box |
 | B | Sabotage map (impostor) / task list (crew) |
 | G | Toggle the proximity radar (who can see you) |

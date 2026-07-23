@@ -148,6 +148,39 @@ Text input fields (name, lobby code, chat) can be focused and typed into.
            task. As an impostor, locates the nearest sabotage point. This
            is a LOCATOR only - it does not auto-complete anything.
 
+TURN-BY-TURN DIRECTIONS  (X, Z and I)
+
+The keys above all point in a STRAIGHT LINE at what you want. That is fine
+once you know the map - but a straight line goes through walls, so if you
+do not already have the ship memorised you end up walking into one, which
+is both frustrating and a great way to look suspicious.
+
+These three keys walk you there instead, following the corridors:
+
+  * X    - NEXT DESTINATION. Cycles through your unfinished tasks (nearest
+           first), then every room on the map, then "guidance off". It only
+           says the name and distance - it does not start walking yet.
+
+  * Z    - PREVIOUS DESTINATION.
+
+  * I    - GO. Starts guiding you to whatever is selected. Press it again
+           while walking to hear the current direction again (it also
+           replans from wherever you are, so it doubles as "I'm lost").
+
+You then get one leg at a time, spoken as you reach each corner:
+
+    "Guiding to Navigation. Down, 7 meters."
+    "Now right, 4 meters."
+    "Now down and right, 3 meters, to Navigation."
+    "Arrived at Navigation."
+
+A quiet tick points toward the next corner between instructions. If you
+wander off the route, or a door is sabotaged shut across it, the mod
+silently works out a new way and just tells you the next direction.
+
+You are still walking yourself - the mod gives you the shape of the ship,
+not the answer.
+
 To actually DO a task, walk to its console and press the game's normal USE
 key (E). The mod takes over once the minigame opens. See the next section.
 
@@ -444,6 +477,13 @@ on, see the settings menu below, to test these.)
     P ............... players in your current room
     Y ............... locate nearest task (crew) / sabotage (impostor)
     N ............... toggle automatic room-entry announcements on/off
+
+  WALK ME THERE (turn-by-turn directions - new)
+    X ............... next destination (your tasks first, then every
+                      room on the map, then "guidance off")
+    Z ............... previous destination
+    I ............... start walking there. Press again on the way to
+                      repeat the current direction
 
   IMPOSTOR
     B ............... open/close sabotage map (crew: read task list)
