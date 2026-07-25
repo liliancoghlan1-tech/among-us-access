@@ -103,17 +103,68 @@ removes exactly these and nothing else.
  5. GETTING AROUND MENUS
 ====================================================================
 
-All menus (main menu, lobby, settings, the laptop, etc.) are navigable:
+All menus (main menu, lobby, the laptop, etc.) are navigable:
 
-  * Left / Right arrow  - move between buttons / options. The mod reads
-                          each one out.
+  * Up / Down arrow     - move between buttons / options. The mod reads
+                          each one out. (Left and Right are left free for
+                          actions inside a menu, like changing a volume or
+                          accepting a friend request.)
   * Enter               - activate the focused button.
+  * Escape              - back out / close.
+  * Page Up / Page Down - jump ten items at a time in a long list.
+  * Home / End          - jump to the first / last item.
   * C                   - jump straight to the chat input box (in a lobby
                           or game). Type your message, press Enter to send.
                           Game hotkeys are disabled while the chat box is
                           focused, so you can type freely.
 
 Text input fields (name, lobby code, chat) can be focused and typed into.
+
+SETTINGS (the gear icon on the main menu)
+  The settings panel is mouse-driven in the base game, so the mod reads it
+  as its own menu. Open it from the main menu and you get:
+
+  * Up / Down     - move between the settings.
+  * Left / Right  - change the highlighted one: music volume, sound effects
+                    volume, censor chat, colour blind text, streamer mode,
+                    friend list invites, disable mouse movement.
+  * Enter         - flip a setting on or off.
+  * Escape        - close the panel.
+
+  Volumes are read as a percentage, switches as "on" or "off".
+
+FRIENDS AND YOUR FRIEND CODE  -  press F1
+  The game's friends panel cannot be reached without a mouse, so the mod
+  gives you its own. Press F1 anywhere:
+
+  * Your friend code is read out first. Press Enter to copy it to the
+    clipboard so you can paste it to someone. (If the game is hiding your
+    code behind the privacy toggle, the mod reveals it just long enough to
+    read it, then puts your setting back.)
+  * Friend requests   - Right arrow accepts, Left arrow denies. A request
+                        you have answered will not be offered again.
+  * Game invites      - Enter joins that friend's game.
+  * Your friends      - Enter invites the highlighted friend to your lobby.
+                        (Only works while you are actually in a lobby; the
+                        mod says so if you are not.)
+  * Up / Down move, Escape closes.
+
+CONFIRMATION POP-UPS
+  Some actions raise a small "are you sure?" box that has no keyboard route
+  in the base game. The mod reads the question and gives you Enter to
+  confirm, Escape to cancel - so you can never get stuck behind one.
+
+THE DATE OF BIRTH SCREEN (first launch / new account)
+  Among Us asks for your date of birth once, on a screen built from three
+  mouse-driven drop-down lists. The mod makes it work by ear:
+
+  * Up / Down move between Month, Day, Year and Submit, reading the current
+    value of each ("Month, not set" / "Month, March").
+  * Enter on Month, Day or Year opens its list; Up / Down move through it
+    and Enter chooses. The year list is long, so Page Up / Page Down jump
+    ten years at a time.
+  * Submit reads the date back to you in words ("12 March 2006") and offers
+    "Yes, that date is correct" or "No, go back and change it".
 
 
 ====================================================================
@@ -465,10 +516,14 @@ on, see the settings menu below, to test these.)
 ====================================================================
 
   GETTING AROUND
-    Left / Right .... move between menu buttons / options
+    Up / Down ....... move between menu buttons / options
     Enter ........... activate / select
+    Escape .......... back out / close
+    Page Up/Down .... jump ten items in a long list
+    Home / End ...... jump to the first / last item
     Tab ............. scan surroundings (or repeat state inside a minigame)
     C ............... jump to chat input
+    F1 .............. friends: your friend code, requests, invites
 
   IN A ROUND
     H ............... your full status (colour, role, room, tasks, etc.)
@@ -495,6 +550,10 @@ on, see the settings menu below, to test these.)
     F ............... use your role ability (game key) - opens vitals /
                       tracker / detective notebook / etc.
     J ............... Tracker: read your target's direction & distance
+
+  MENUS
+    F1 .............. friends menu (code / requests / invites)
+    gear icon ....... settings panel (Left/Right change a value)
 
   LOBBY / HOST
     L ............... colour picker

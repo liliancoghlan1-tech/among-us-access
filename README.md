@@ -36,6 +36,9 @@ To remove it later, run **`Uninstall.bat`** from the same folder. It puts the ga
 - **Impostor tools** — a proximity radar that tells you who can see you (silence = safe to kill or vent), an accessible sabotage map, and vent navigation that names where each vent leads.
 - **Special roles** — Scientist, Tracker, Detective, Guardian Angel, Shapeshifter, Phantom, and Viper all have spoken ability state and cues.
 - **Menus, lobby, hosting, colour picker, and the end-of-game screen** — all navigable and spoken.
+- **The settings panel** — volumes, censor chat, colour blind text, streamer mode and the rest, read out and changed with Left/Right.
+- **Friends, on one key (F1)** — your friend code read out and copied to the clipboard, friend requests accepted or denied, game invites joined, and friends invited to your lobby. The game's own friends panel needs a mouse; this replaces it.
+- **The date-of-birth screen on first launch** — three mouse-driven drop-downs made navigable by ear, with the date read back in words before you confirm.
 
 ---
 
