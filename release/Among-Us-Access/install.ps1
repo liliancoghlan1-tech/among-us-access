@@ -5,6 +5,26 @@ $FILES = Join-Path $ROOT "files"
 function Say($m) { Write-Host $m }
 function MD5($path) { (Get-FileHash -Algorithm MD5 -LiteralPath $path).Hash.ToUpper() }
 
+# 32 or 64, read from the PE header; $null if the file is unreadable.
+function Bits($path) {
+    try {
+        $fs = [IO.File]::OpenRead($path)
+        try {
+            $br = New-Object IO.BinaryReader($fs)
+            $fs.Position = 0x3C; $fs.Position = $br.ReadInt32() + 4
+            switch ($br.ReadUInt16()) { 0x14C { return 32 } 0x8664 { return 64 } }
+        } finally { $fs.Dispose() }
+    } catch {}
+    return $null
+}
+
+# What a working install needs. "dotnet" is checked by its runtime DLL, since
+# an emptied dotnet folder still exists but cannot start the framework.
+$required = @("winhttp.dll", "doorstop_config.ini", "dotnet\coreclr.dll",
+              "BepInEx\core\BepInEx.Unity.IL2CPP.dll",
+              "BepInEx\plugins\Among Us Accessibility Mod.dll",
+              "BepInEx\plugins\SpeechLibs\Tolk.dll")
+
 Say ""
 Say "===================================================="
 Say " AMONG US ACCESS  -  NVDA Accessibility Mod  -  INSTALL"
@@ -65,12 +85,37 @@ if (-not $game -or -not (Test-Path (Join-Path $game "Among Us.exe"))) {
 }
 Say "Found Among Us at: $game"
 
-# --- 3. Already installed? -----------------------------------------------------
+# --- 3. Does this download match the game? -------------------------------------
+# The framework loader (winhttp.dll) only loads into a game of the same bitness.
+# Among Us on Steam went 64-bit in v19; a 32-bit loader there means total silence.
+$gameBits = Bits (Join-Path $game "Among Us.exe")
+$modBits = Bits (Join-Path $FILES "winhttp.dll")
+if ($gameBits -and $modBits -and $gameBits -ne $modBits) {
+    Say ""
+    Say "This copy of Among Us is $gameBits-bit, but this download is built for"
+    Say "$modBits-bit Among Us, so the mod would not start."
+    Say ""
+    Say "Let Steam finish updating Among Us, and make sure you downloaded the"
+    Say "latest Among Us Access from the Releases page."
+    Say ""
+    Say "Nothing was changed."
+    return
+}
+
+# --- 4. Already installed? -----------------------------------------------------
 $pluginName = "Among Us Accessibility Mod.dll"
 $installedPlugin = Join-Path $game (Join-Path "BepInEx\plugins" $pluginName)
 $newPlugin = Join-Path $FILES (Join-Path "BepInEx\plugins" $pluginName)
 if (Test-Path $installedPlugin) {
-    if ((MD5 $installedPlugin) -eq (MD5 $newPlugin)) {
+    $samePlugin = (MD5 $installedPlugin) -eq (MD5 $newPlugin)
+    # A matching mod is not enough: the framework around it can be missing or
+    # from another build, and then the mod never starts.
+    $intact = $samePlugin
+    foreach ($f in $required) { if (-not (Test-Path (Join-Path $game $f))) { $intact = $false } }
+    if ($intact -and (MD5 (Join-Path $game "winhttp.dll")) -ne (MD5 (Join-Path $FILES "winhttp.dll"))) {
+        $intact = $false
+    }
+    if ($intact) {
         Say ""
         Say "Good news: this version is already installed. Nothing to do."
         Say ""
@@ -78,10 +123,15 @@ if (Test-Path $installedPlugin) {
         return
     }
     Say ""
-    Say "A different version of the mod is already installed - updating it."
+    if ($samePlugin) {
+        Say "The mod is installed, but some of its framework files are missing"
+        Say "or from another version - repairing it."
+    } else {
+        Say "A different version of the mod is already installed - updating it."
+    }
 }
 
-# --- 4. Copy everything in -----------------------------------------------------
+# --- 5. Copy everything in -----------------------------------------------------
 Say ""
 Say "Installing... (there is a large runtime folder, so give it a few seconds)"
 Copy-Item -Path (Join-Path $FILES "*") -Destination $game -Recurse -Force
@@ -91,12 +141,9 @@ if (Test-Path $doorstopVersion) {
     Copy-Item -LiteralPath $doorstopVersion -Destination $game -Force
 }
 
-# --- 5. Check it landed --------------------------------------------------------
+# --- 6. Check it landed --------------------------------------------------------
 $ok = $true
-foreach ($f in @("winhttp.dll", "doorstop_config.ini", "dotnet",
-                 "BepInEx\core\BepInEx.Unity.IL2CPP.dll",
-                 "BepInEx\plugins\Among Us Accessibility Mod.dll",
-                 "BepInEx\plugins\SpeechLibs\Tolk.dll")) {
+foreach ($f in $required) {
     if (-not (Test-Path (Join-Path $game $f))) { Say "  MISSING: $f"; $ok = $false }
 }
 if (-not $ok) {
@@ -128,7 +175,7 @@ Say ""
 Say "To remove the mod later, run Uninstall."
 Say ""
 
-# --- 6. Is NVDA even running? --------------------------------------------------
+# --- 7. Is NVDA even running? --------------------------------------------------
 if (-not (Get-Process -Name nvda -ErrorAction SilentlyContinue)) {
     Say "One thing: NVDA does not appear to be running right now."
     Say "Start NVDA before you launch the game, or you will not hear anything."

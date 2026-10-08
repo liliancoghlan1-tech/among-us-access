@@ -67,9 +67,10 @@ ever changed.
 You do not need to install anything else. This package contains:
 
   * The mod itself (Among Us Access).
-  * BepInEx 6 (IL2CPP) - the modding framework it runs on, plus the
-    small .NET runtime it needs (the "dotnet" folder).
-  * The speech engine DLLs (Tolk + NVDA/SAPI), in a "SpeechLibs" folder.
+  * BepInEx 6 (IL2CPP, 64-bit) - the modding framework it runs on, plus
+    the small .NET runtime it needs (the "dotnet" folder).
+  * The speech engine DLLs (Tolk + NVDA/SAPI, 64-bit), in a "SpeechLibs"
+    folder.
   * A ready-made config, so all the keys match this README out of the box.
 
 After install these live inside ...\Among Us\BepInEx\ (the mod and the
@@ -606,7 +607,13 @@ settings menu below.)
 
   * If the mod does not load ("Among Us Accessibility Mod loaded" never
     plays): make sure "winhttp.dll" is sitting right next to "Among Us.exe"
-    in your Among Us folder. Running Install again fixes this.
+    in your Among Us folder. Running Install again fixes this - it checks
+    the framework files too, and repairs any that are missing.
+
+  * Among Us on Steam is a 64-bit game since v19, and this package is
+    built for it. Versions of this mod before 1.3.1 were 32-bit and do not
+    start at all on the current game - if you have one of those, run
+    Install from this download and it updates everything.
 
   * Among Us updates from time to time. Because the mod reads the game
     through the framework, most updates are fine, but a big one can

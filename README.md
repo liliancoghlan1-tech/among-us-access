@@ -76,6 +76,7 @@ All keys can be rebound in the config file. See `README.txt` for the details and
 - Focused on **The Skeld** — every task and sabotage there is accessible. Other maps aren't fully covered yet.
 - **Freeplay** (the main-menu practice mode) is the best place to learn movement and the task minigames with no pressure.
 - Among Us updates from time to time; most updates are fine, but a big one can occasionally break something until the mod is rebuilt.
+- Among Us on Steam is **64-bit since v19**. Use Among Us Access **1.3.1 or later**; older downloads were 32-bit and do not start on the current game. Running the new `Install.bat` over an old install updates everything.
 
 ---
 
